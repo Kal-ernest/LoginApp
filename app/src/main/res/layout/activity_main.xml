@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background"
     tools:context=".MainActivity">
+    
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/myNavHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/navigation"
+        app:defaultNavHost="true" />
+
 
     <TextView
         android:layout_width="match_parent"
@@ -113,7 +123,8 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="20dp"
-        android:src="@drawable/twitter"
+        app:srcCompat="@drawable/twitter"
+        tools:src="@drawable/twitter"
         android:id="@+id/Twitter"
         android:contentDescription="@string/twitter" />
 

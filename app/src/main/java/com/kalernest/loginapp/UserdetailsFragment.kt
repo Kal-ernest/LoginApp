@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+//
 
 /**
  * A simple [Fragment] subclass.
@@ -33,6 +37,21 @@ class UserdetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        viewModel.bodyTemperature.observe(viewLifecycleOwner, Observer{
+            newbodyTemperature ->
+            binding.bodyTemperature.text = newbodyTemperature.toString()
+        })
+
+        viewModel.bodyTemperature.observe(viewLifecycleOwner, Observer{
+                newpulseRate ->
+            binding.pulseRate.text = newpulseRate.toString()
+        })
+
+        viewModel.bodyTemperature.observe(viewLifecycleOwner, Observer{
+                newoxyRate ->
+            binding.oxyRate.text = newoxyRate.toString()
+        })
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_userdetails, container, false)
     }

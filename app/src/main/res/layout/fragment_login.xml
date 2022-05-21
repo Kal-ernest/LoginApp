@@ -1,136 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment">
-
-    <data>
-        <variable
-            name="myLoginViewModel"
-            type="com.kalernest.loginapp.database.Login" />
-
-    </data>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+    
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/myNavHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/navigation"
+        app:defaultNavHost="true" />
 
-        <TextView
-            android:id="@+id/textView"
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signin"
+        android:text="@string/sign_in"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_margin="50dp"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signin"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:autofillHints=""
+        android:background="#30ffffff"
+        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:drawablePadding="20dp"
+        android:hint="@string/username"
+        android:inputType=""
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="#D32F2F" />
+
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:autofillHints=""
+        android:background="#30ffffff"
+        android:drawableStart="@drawable/ic_baseline_info_24"
+        android:drawablePadding="20dp"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="#D32F2F" />
+
+
+        <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="80dp"
-            android:text="@string/Login_text"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/loginbtn"
+            android:layout_below="@id/password"
+            android:text="@string/login"
+            android:backgroundTint="@color/design_default_color_on_secondary"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp" />
 
-        <TextView
-            android:id="@+id/userNameTextView"
-            android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/forgotpass"
+                android:layout_below="@id/loginbtn"
+                android:text="@string/forgot_password"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/others"
+        android:layout_above="@+id/socialicons"
+        android:text="@string/or_sign_in_with"
+        android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="73dp"
-            android:layout_marginEnd="80dp"
-            android:text="@string/UserNameTextView"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <TextView
-            android:id="@+id/passwordTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="80dp"
-            android:text="@string/PasswordText"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userNameTextField" />
-
-        <EditText
-            android:id="@+id/userNameTextField"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="80dp"
-            android:ems="10"
-            android:hint="@string/UsernameTextField"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:text="@={myLoginViewModel.inputUsername}"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userNameTextView" />
-
-        <EditText
-            android:id="@+id/passwordTextField"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="80dp"
-            android:ems="10"
-            android:hint="@string/PasswordTextFiels"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:text="@={myLoginViewModel.inputPassword}"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordTextView" />
-
-        <Button
-            android:id="@+id/submitButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="16dp"
-            android:onClick="@{()->myLoginViewModel.loginButton()}"
-            android:text="@string/Login_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordTextField" />
-
-        <TextView
-            android:id="@+id/SignUpButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:text="@string/signupText"
-            android:textStyle="bold"
-            android:onClick="@{()->myLoginViewModel.signUP()}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/submitButton" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:id="@+id/socialicons"
+            android:layout_alignParentBottom="true"
+            android:gravity="center">
 
 
-</layout>
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="20dp"
+                android:id="@+id/Google"
+                android:src="@drawable/google"
+                android:contentDescription="@string/google" />
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="20dp"
+                android:id="@+id/meta"
+                android:src="@drawable/meta"
+                android:contentDescription="@string/meta" />
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="20dp"
+        app:srcCompat="@drawable/twitter"
+        tools:src="@drawable/twitter"
+        android:id="@+id/Twitter"
+        android:contentDescription="@string/twitter" />
+
+        </LinearLayout>
 
 
+
+
+
+
+
+
+</RelativeLayout>
